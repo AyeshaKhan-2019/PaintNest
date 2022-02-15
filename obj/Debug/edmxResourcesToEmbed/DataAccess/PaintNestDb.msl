@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Paint_NestEntities">
+    <FunctionImportMapping FunctionImportName="getCustName" FunctionName="Model.Store.getCustName" />
+    <EntitySetMapping Name="Companies">
+      <EntityTypeMapping TypeName="Model.Company">
+        <MappingFragment StoreEntitySet="Company">
+          <ScalarProperty Name="company_password" ColumnName="company_password" />
+          <ScalarProperty Name="company_email" ColumnName="company_email" />
+          <ScalarProperty Name="company_contact" ColumnName="company_contact" />
+          <ScalarProperty Name="company_address_country" ColumnName="company_address_country" />
+          <ScalarProperty Name="company_address_city" ColumnName="company_address_city" />
+          <ScalarProperty Name="company_address_zipcode" ColumnName="company_address_zipcode" />
+          <ScalarProperty Name="company_address_state" ColumnName="company_address_state" />
+          <ScalarProperty Name="company_address" ColumnName="company_address" />
+          <ScalarProperty Name="company_name" ColumnName="company_name" />
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactUs">
+      <EntityTypeMapping TypeName="Model.ContactU">
+        <MappingFragment StoreEntitySet="ContactUs">
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="Model.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="customer_password" ColumnName="customer_password" />
+          <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+          <ScalarProperty Name="customer_contact" ColumnName="customer_contact" />
+          <ScalarProperty Name="customer_address_country" ColumnName="customer_address_country" />
+          <ScalarProperty Name="customer_address_city" ColumnName="customer_address_city" />
+          <ScalarProperty Name="customer_address_zipcode" ColumnName="customer_address_zipcode" />
+          <ScalarProperty Name="customer_address_state" ColumnName="customer_address_state" />
+          <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+          <ScalarProperty Name="customerID" ColumnName="customerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="Model.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="CustomerLastName" ColumnName="CustomerLastName" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Country" ColumnName="Country" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+          <ScalarProperty Name="ProductSize" ColumnName="ProductSize" />
+          <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+          <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+          <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+          <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+          <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+          <ScalarProperty Name="CustomerContact" ColumnName="CustomerContact" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Paints">
+      <EntityTypeMapping TypeName="Model.Paint">
+        <MappingFragment StoreEntitySet="Paint">
+          <ScalarProperty Name="paint_image" ColumnName="paint_image" />
+          <ScalarProperty Name="paint_DrumPrice" ColumnName="paint_DrumPrice" />
+          <ScalarProperty Name="paint_GalPrice" ColumnName="paint_GalPrice" />
+          <ScalarProperty Name="paint_QtrPrice" ColumnName="paint_QtrPrice" />
+          <ScalarProperty Name="paint_description" ColumnName="paint_description" />
+          <ScalarProperty Name="paint_name" ColumnName="paint_name" />
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="paintCategoryID" ColumnName="paintCategoryID" />
+          <ScalarProperty Name="paintID" ColumnName="paintID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaintCategories">
+      <EntityTypeMapping TypeName="Model.PaintCategory">
+        <MappingFragment StoreEntitySet="PaintCategory">
+          <ScalarProperty Name="subCategoryDescription" ColumnName="subCategoryDescription" />
+          <ScalarProperty Name="subCategoryName" ColumnName="subCategoryName" />
+          <ScalarProperty Name="mainCategoryDescription" ColumnName="mainCategoryDescription" />
+          <ScalarProperty Name="mainCategoryName" ColumnName="mainCategoryName" />
+          <ScalarProperty Name="paintCategoryID" ColumnName="paintCategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tests">
+      <EntityTypeMapping TypeName="Model.Test">
+        <MappingFragment StoreEntitySet="Test">
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Carts">
+      <EntityTypeMapping TypeName="Model.Cart">
+        <MappingFragment StoreEntitySet="Cart">
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <ScalarProperty Name="product_color" ColumnName="product_color" />
+          <ScalarProperty Name="product_price" ColumnName="product_price" />
+          <ScalarProperty Name="product_size" ColumnName="product_size" />
+          <ScalarProperty Name="product_name" ColumnName="product_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CustomerRegisters">
+      <EntityTypeMapping TypeName="Model.CustomerRegister">
+        <MappingFragment StoreEntitySet="CustomerRegister">
+          <ScalarProperty Name="customer_password" ColumnName="customer_password" />
+          <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+          <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaintColors">
+      <EntityTypeMapping TypeName="Model.PaintColor">
+        <MappingFragment StoreEntitySet="PaintColor">
+          <ScalarProperty Name="color_hexValue" ColumnName="color_hexValue" />
+          <ScalarProperty Name="color_name" ColumnName="color_name" />
+          <ScalarProperty Name="paintID" ColumnName="paintID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Test1">
+      <EntityTypeMapping TypeName="Model.Test1">
+        <MappingFragment StoreEntitySet="Test1">
+          <ScalarProperty Name="Budget" ColumnName="Budget" />
+          <ScalarProperty Name="Genre" ColumnName="Genre" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

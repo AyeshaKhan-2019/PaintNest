@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Paint_NestEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="getCustName" ReturnType="Collection(String)">
+      <Parameter Name="customer_email" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Companies" EntityType="Model.Company" />
+    <EntitySet Name="ContactUs" EntityType="Model.ContactU" />
+    <EntitySet Name="Customers" EntityType="Model.Customer" />
+    <EntitySet Name="Orders" EntityType="Model.Order" />
+    <EntitySet Name="Paints" EntityType="Model.Paint" />
+    <EntitySet Name="PaintCategories" EntityType="Model.PaintCategory" />
+    <EntitySet Name="Tests" EntityType="Model.Test" />
+    <EntitySet Name="Carts" EntityType="Model.Cart" />
+    <EntitySet Name="CustomerRegisters" EntityType="Model.CustomerRegister" />
+    <EntitySet Name="PaintColors" EntityType="Model.PaintColor" />
+    <EntitySet Name="Test1" EntityType="Model.Test1" />
+    <AssociationSet Name="FK_Paint_Company" Association="Model.FK_Paint_Company">
+      <End Role="Company" EntitySet="Companies" />
+      <End Role="Paint" EntitySet="Paints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Paint_PaintCategory" Association="Model.FK_Paint_PaintCategory">
+      <End Role="PaintCategory" EntitySet="PaintCategories" />
+      <End Role="Paint" EntitySet="Paints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PaintColor_Paint" Association="Model.FK_PaintColor_Paint">
+      <End Role="Paint" EntitySet="Paints" />
+      <End Role="PaintColor" EntitySet="PaintColors" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Company">
+    <Key>
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="company_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_address_state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_address_zipcode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="company_address_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_address_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_contact" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="company_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="company_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Paints" Relationship="Model.FK_Paint_Company" FromRole="Company" ToRole="Paint" />
+  </EntityType>
+  <EntityType Name="ContactU">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="customerID" />
+    </Key>
+    <Property Name="customerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_address_state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_address_zipcode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="customer_address_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_address_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_contact" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+    <Property Name="customer_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderId" />
+    </Key>
+    <Property Name="OrderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerContact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductPrice" Type="Int32" />
+    <Property Name="ProductQuantity" Type="Int32" />
+    <Property Name="ProductSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProductColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalPrice" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CustomerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Paint">
+    <Key>
+      <PropertyRef Name="paintID" />
+    </Key>
+    <Property Name="paintID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="paintCategoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="companyID" Type="Int32" />
+    <Property Name="paint_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="paint_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="paint_QtrPrice" Type="Int32" />
+    <Property Name="paint_GalPrice" Type="Int32" />
+    <Property Name="paint_DrumPrice" Type="Int32" />
+    <Property Name="paint_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Company" Relationship="Model.FK_Paint_Company" FromRole="Paint" ToRole="Company" />
+    <NavigationProperty Name="PaintCategory" Relationship="Model.FK_Paint_PaintCategory" FromRole="Paint" ToRole="PaintCategory" />
+    <NavigationProperty Name="PaintColors" Relationship="Model.FK_PaintColor_Paint" FromRole="Paint" ToRole="PaintColor" />
+  </EntityType>
+  <EntityType Name="PaintCategory">
+    <Key>
+      <PropertyRef Name="paintCategoryID" />
+    </Key>
+    <Property Name="paintCategoryID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mainCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="mainCategoryDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="subCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="subCategoryDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Paints" Relationship="Model.FK_Paint_PaintCategory" FromRole="PaintCategory" ToRole="Paint" />
+  </EntityType>
+  <EntityType Name="Test">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Cart">
+    <Key>
+      <PropertyRef Name="product_name" />
+      <PropertyRef Name="product_size" />
+      <PropertyRef Name="product_price" />
+      <PropertyRef Name="product_color" />
+      <PropertyRef Name="quantity" />
+    </Key>
+    <Property Name="product_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="product_size" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="product_price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="product_color" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerRegister">
+    <Key>
+      <PropertyRef Name="customer_name" />
+      <PropertyRef Name="customer_email" />
+      <PropertyRef Name="customer_password" />
+    </Key>
+    <Property Name="customer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="customer_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PaintColor">
+    <Key>
+      <PropertyRef Name="paintID" />
+      <PropertyRef Name="color_name" />
+      <PropertyRef Name="color_hexValue" />
+    </Key>
+    <Property Name="paintID" Type="Int32" Nullable="false" />
+    <Property Name="color_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="color_hexValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Paint" Relationship="Model.FK_PaintColor_Paint" FromRole="PaintColor" ToRole="Paint" />
+  </EntityType>
+  <EntityType Name="Test1">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="Name" />
+      <PropertyRef Name="Genre" />
+      <PropertyRef Name="Budget" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Genre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Budget" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_Paint_Company">
+    <End Type="Model.Company" Role="Company" Multiplicity="0..1" />
+    <End Type="Model.Paint" Role="Paint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Company">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="Paint">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Paint_PaintCategory">
+    <End Type="Model.PaintCategory" Role="PaintCategory" Multiplicity="0..1" />
+    <End Type="Model.Paint" Role="Paint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PaintCategory">
+        <PropertyRef Name="paintCategoryID" />
+      </Principal>
+      <Dependent Role="Paint">
+        <PropertyRef Name="paintCategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PaintColor_Paint">
+    <End Type="Model.Paint" Role="Paint" Multiplicity="1" />
+    <End Type="Model.PaintColor" Role="PaintColor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Paint">
+        <PropertyRef Name="paintID" />
+      </Principal>
+      <Dependent Role="PaintColor">
+        <PropertyRef Name="paintID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

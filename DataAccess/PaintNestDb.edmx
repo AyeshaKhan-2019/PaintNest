@@ -1,0 +1,634 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PaintNest.dbo.Cart' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="product_name" />
+            <PropertyRef Name="product_size" />
+            <PropertyRef Name="product_price" />
+            <PropertyRef Name="product_color" />
+            <PropertyRef Name="quantity" />
+          </Key>
+          <Property Name="product_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_size" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_price" Type="money" Nullable="false" />
+          <Property Name="product_color" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="companyID" />
+          </Key>
+          <Property Name="companyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="company_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="company_address" Type="varchar" MaxLength="50" />
+          <Property Name="company_address_state" Type="varchar" MaxLength="50" />
+          <Property Name="company_address_zipcode" Type="varchar" MaxLength="5" />
+          <Property Name="company_address_city" Type="varchar" MaxLength="50" />
+          <Property Name="company_address_country" Type="varchar" MaxLength="50" />
+          <Property Name="company_contact" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="company_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="company_password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ContactUs">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Subject" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Message" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerID" />
+          </Key>
+          <Property Name="customerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="customer_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customer_address" Type="varchar" MaxLength="50" />
+          <Property Name="customer_address_state" Type="varchar" MaxLength="50" />
+          <Property Name="customer_address_zipcode" Type="varchar" MaxLength="5" />
+          <Property Name="customer_address_city" Type="varchar" MaxLength="50" />
+          <Property Name="customer_address_country" Type="varchar" MaxLength="50" />
+          <Property Name="customer_contact" Type="varchar" MaxLength="14" Nullable="false" />
+          <Property Name="customer_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customer_password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PaintNest.dbo.CustomerRegister' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="CustomerRegister">
+          <Key>
+            <PropertyRef Name="customer_name" />
+            <PropertyRef Name="customer_email" />
+            <PropertyRef Name="customer_password" />
+          </Key>
+          <Property Name="customer_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customer_email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="customer_password" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerContact" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerAddress" Type="varchar(max)" />
+          <Property Name="CustomerEmail" Type="varchar" MaxLength="50" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="ProductPrice" Type="int" />
+          <Property Name="ProductQuantity" Type="int" />
+          <Property Name="ProductSize" Type="varchar" MaxLength="50" />
+          <Property Name="ProductColor" Type="varchar" MaxLength="50" />
+          <Property Name="TotalPrice" Type="int" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="State" Type="varchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+          <Property Name="CustomerLastName" Type="varchar" MaxLength="50" />
+          <Property Name="CompanyName" Type="varchar" MaxLength="100" />
+          <Property Name="OrderStatus" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Paint">
+          <Key>
+            <PropertyRef Name="paintID" />
+          </Key>
+          <Property Name="paintID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="paintCategoryID" Type="varchar" MaxLength="50" />
+          <Property Name="companyID" Type="int" />
+          <Property Name="paint_name" Type="varchar" MaxLength="50" />
+          <Property Name="paint_description" Type="varchar(max)" />
+          <Property Name="paint_QtrPrice" Type="int" />
+          <Property Name="paint_GalPrice" Type="int" />
+          <Property Name="paint_DrumPrice" Type="int" />
+          <Property Name="paint_image" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="PaintCategory">
+          <Key>
+            <PropertyRef Name="paintCategoryID" />
+          </Key>
+          <Property Name="paintCategoryID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mainCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mainCategoryDescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="subCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="subCategoryDescription" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PaintNest.dbo.PaintColor' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="PaintColor">
+          <Key>
+            <PropertyRef Name="paintID" />
+            <PropertyRef Name="color_name" />
+            <PropertyRef Name="color_hexValue" />
+          </Key>
+          <Property Name="paintID" Type="int" Nullable="false" />
+          <Property Name="color_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="color_hexValue" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="image" Type="image" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'PaintNest.dbo.Test1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Test1">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Genre" />
+            <PropertyRef Name="Budget" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Genre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Budget" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Paint_Company">
+          <End Role="Company" Type="Self.Company" Multiplicity="0..1" />
+          <End Role="Paint" Type="Self.Paint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="companyID" />
+            </Principal>
+            <Dependent Role="Paint">
+              <PropertyRef Name="companyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paint_PaintCategory">
+          <End Role="PaintCategory" Type="Self.PaintCategory" Multiplicity="0..1" />
+          <End Role="Paint" Type="Self.Paint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaintCategory">
+              <PropertyRef Name="paintCategoryID" />
+            </Principal>
+            <Dependent Role="Paint">
+              <PropertyRef Name="paintCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaintColor_Paint">
+          <End Role="Paint" Type="Self.Paint" Multiplicity="1" />
+          <End Role="PaintColor" Type="Self.PaintColor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paint">
+              <PropertyRef Name="paintID" />
+            </Principal>
+            <Dependent Role="PaintColor">
+              <PropertyRef Name="paintID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="getCustName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="customer_email" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ContactUs" EntityType="Self.ContactUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Paint" EntityType="Self.Paint" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PaintCategory" EntityType="Self.PaintCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Cart].[product_name] AS [product_name], 
+    [Cart].[product_size] AS [product_size], 
+    [Cart].[product_price] AS [product_price], 
+    [Cart].[product_color] AS [product_color], 
+    [Cart].[quantity] AS [quantity]
+    FROM [dbo].[Cart] AS [Cart]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CustomerRegister" EntityType="Self.CustomerRegister" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CustomerRegister].[customer_name] AS [customer_name], 
+    [CustomerRegister].[customer_email] AS [customer_email], 
+    [CustomerRegister].[customer_password] AS [customer_password]
+    FROM [dbo].[CustomerRegister] AS [CustomerRegister]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PaintColor" EntityType="Self.PaintColor" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PaintColor].[paintID] AS [paintID], 
+    [PaintColor].[color_name] AS [color_name], 
+    [PaintColor].[color_hexValue] AS [color_hexValue]
+    FROM [dbo].[PaintColor] AS [PaintColor]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Test1" EntityType="Self.Test1" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Test1].[id] AS [id], 
+    [Test1].[Name] AS [Name], 
+    [Test1].[Genre] AS [Genre], 
+    [Test1].[Budget] AS [Budget]
+    FROM [dbo].[Test1] AS [Test1]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Paint_Company" Association="Self.FK_Paint_Company">
+            <End Role="Company" EntitySet="Company" />
+            <End Role="Paint" EntitySet="Paint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paint_PaintCategory" Association="Self.FK_Paint_PaintCategory">
+            <End Role="PaintCategory" EntitySet="PaintCategory" />
+            <End Role="Paint" EntitySet="Paint" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaintColor_Paint" Association="Self.FK_PaintColor_Paint">
+            <End Role="Paint" EntitySet="Paint" />
+            <End Role="PaintColor" EntitySet="PaintColor" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Paint_NestEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="getCustName" ReturnType="Collection(String)">
+          <Parameter Name="customer_email" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Companies" EntityType="Model.Company" />
+          <EntitySet Name="ContactUs" EntityType="Model.ContactU" />
+          <EntitySet Name="Customers" EntityType="Model.Customer" />
+          <EntitySet Name="Orders" EntityType="Model.Order" />
+          <EntitySet Name="Paints" EntityType="Model.Paint" />
+          <EntitySet Name="PaintCategories" EntityType="Model.PaintCategory" />
+          <EntitySet Name="Tests" EntityType="Model.Test" />
+          <EntitySet Name="Carts" EntityType="Model.Cart" />
+          <EntitySet Name="CustomerRegisters" EntityType="Model.CustomerRegister" />
+          <EntitySet Name="PaintColors" EntityType="Model.PaintColor" />
+          <EntitySet Name="Test1" EntityType="Model.Test1" />
+          <AssociationSet Name="FK_Paint_Company" Association="Model.FK_Paint_Company">
+            <End Role="Company" EntitySet="Companies" />
+            <End Role="Paint" EntitySet="Paints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Paint_PaintCategory" Association="Model.FK_Paint_PaintCategory">
+            <End Role="PaintCategory" EntitySet="PaintCategories" />
+            <End Role="Paint" EntitySet="Paints" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PaintColor_Paint" Association="Model.FK_PaintColor_Paint">
+            <End Role="Paint" EntitySet="Paints" />
+            <End Role="PaintColor" EntitySet="PaintColors" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="companyID" />
+          </Key>
+          <Property Name="companyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="company_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_address_state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_address_zipcode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="company_address_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_address_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_contact" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="company_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="company_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Paints" Relationship="Model.FK_Paint_Company" FromRole="Company" ToRole="Paint" />
+        </EntityType>
+        <EntityType Name="ContactU">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="customerID" />
+          </Key>
+          <Property Name="customerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="customer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_address_state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_address_zipcode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="customer_address_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_address_country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_contact" Type="String" Nullable="false" MaxLength="14" FixedLength="false" Unicode="false" />
+          <Property Name="customer_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderId" />
+          </Key>
+          <Property Name="OrderId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerContact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductPrice" Type="Int32" />
+          <Property Name="ProductQuantity" Type="Int32" />
+          <Property Name="ProductSize" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TotalPrice" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerLastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Paint">
+          <Key>
+            <PropertyRef Name="paintID" />
+          </Key>
+          <Property Name="paintID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="paintCategoryID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="companyID" Type="Int32" />
+          <Property Name="paint_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="paint_description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="paint_QtrPrice" Type="Int32" />
+          <Property Name="paint_GalPrice" Type="Int32" />
+          <Property Name="paint_DrumPrice" Type="Int32" />
+          <Property Name="paint_image" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Company" Relationship="Model.FK_Paint_Company" FromRole="Paint" ToRole="Company" />
+          <NavigationProperty Name="PaintCategory" Relationship="Model.FK_Paint_PaintCategory" FromRole="Paint" ToRole="PaintCategory" />
+          <NavigationProperty Name="PaintColors" Relationship="Model.FK_PaintColor_Paint" FromRole="Paint" ToRole="PaintColor" />
+        </EntityType>
+        <EntityType Name="PaintCategory">
+          <Key>
+            <PropertyRef Name="paintCategoryID" />
+          </Key>
+          <Property Name="paintCategoryID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mainCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="mainCategoryDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="subCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="subCategoryDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Paints" Relationship="Model.FK_Paint_PaintCategory" FromRole="PaintCategory" ToRole="Paint" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="image" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="product_name" />
+            <PropertyRef Name="product_size" />
+            <PropertyRef Name="product_price" />
+            <PropertyRef Name="product_color" />
+            <PropertyRef Name="quantity" />
+          </Key>
+          <Property Name="product_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_size" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="product_price" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="product_color" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CustomerRegister">
+          <Key>
+            <PropertyRef Name="customer_name" />
+            <PropertyRef Name="customer_email" />
+            <PropertyRef Name="customer_password" />
+          </Key>
+          <Property Name="customer_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="customer_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PaintColor">
+          <Key>
+            <PropertyRef Name="paintID" />
+            <PropertyRef Name="color_name" />
+            <PropertyRef Name="color_hexValue" />
+          </Key>
+          <Property Name="paintID" Type="Int32" Nullable="false" />
+          <Property Name="color_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="color_hexValue" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Paint" Relationship="Model.FK_PaintColor_Paint" FromRole="PaintColor" ToRole="Paint" />
+        </EntityType>
+        <EntityType Name="Test1">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Genre" />
+            <PropertyRef Name="Budget" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Genre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Budget" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Paint_Company">
+          <End Type="Model.Company" Role="Company" Multiplicity="0..1" />
+          <End Type="Model.Paint" Role="Paint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Company">
+              <PropertyRef Name="companyID" />
+            </Principal>
+            <Dependent Role="Paint">
+              <PropertyRef Name="companyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Paint_PaintCategory">
+          <End Type="Model.PaintCategory" Role="PaintCategory" Multiplicity="0..1" />
+          <End Type="Model.Paint" Role="Paint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaintCategory">
+              <PropertyRef Name="paintCategoryID" />
+            </Principal>
+            <Dependent Role="Paint">
+              <PropertyRef Name="paintCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PaintColor_Paint">
+          <End Type="Model.Paint" Role="Paint" Multiplicity="1" />
+          <End Type="Model.PaintColor" Role="PaintColor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paint">
+              <PropertyRef Name="paintID" />
+            </Principal>
+            <Dependent Role="PaintColor">
+              <PropertyRef Name="paintID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Paint_NestEntities">
+          <FunctionImportMapping FunctionImportName="getCustName" FunctionName="Model.Store.getCustName" />
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="Model.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="company_password" ColumnName="company_password" />
+                <ScalarProperty Name="company_email" ColumnName="company_email" />
+                <ScalarProperty Name="company_contact" ColumnName="company_contact" />
+                <ScalarProperty Name="company_address_country" ColumnName="company_address_country" />
+                <ScalarProperty Name="company_address_city" ColumnName="company_address_city" />
+                <ScalarProperty Name="company_address_zipcode" ColumnName="company_address_zipcode" />
+                <ScalarProperty Name="company_address_state" ColumnName="company_address_state" />
+                <ScalarProperty Name="company_address" ColumnName="company_address" />
+                <ScalarProperty Name="company_name" ColumnName="company_name" />
+                <ScalarProperty Name="companyID" ColumnName="companyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ContactUs">
+            <EntityTypeMapping TypeName="Model.ContactU">
+              <MappingFragment StoreEntitySet="ContactUs">
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="Model.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="customer_password" ColumnName="customer_password" />
+                <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+                <ScalarProperty Name="customer_contact" ColumnName="customer_contact" />
+                <ScalarProperty Name="customer_address_country" ColumnName="customer_address_country" />
+                <ScalarProperty Name="customer_address_city" ColumnName="customer_address_city" />
+                <ScalarProperty Name="customer_address_zipcode" ColumnName="customer_address_zipcode" />
+                <ScalarProperty Name="customer_address_state" ColumnName="customer_address_state" />
+                <ScalarProperty Name="customer_address" ColumnName="customer_address" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+                <ScalarProperty Name="customerID" ColumnName="customerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="Model.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CustomerLastName" ColumnName="CustomerLastName" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="ProductColor" ColumnName="ProductColor" />
+                <ScalarProperty Name="ProductSize" ColumnName="ProductSize" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="ProductPrice" ColumnName="ProductPrice" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="CustomerEmail" ColumnName="CustomerEmail" />
+                <ScalarProperty Name="CustomerAddress" ColumnName="CustomerAddress" />
+                <ScalarProperty Name="CustomerContact" ColumnName="CustomerContact" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Paints">
+            <EntityTypeMapping TypeName="Model.Paint">
+              <MappingFragment StoreEntitySet="Paint">
+                <ScalarProperty Name="paint_image" ColumnName="paint_image" />
+                <ScalarProperty Name="paint_DrumPrice" ColumnName="paint_DrumPrice" />
+                <ScalarProperty Name="paint_GalPrice" ColumnName="paint_GalPrice" />
+                <ScalarProperty Name="paint_QtrPrice" ColumnName="paint_QtrPrice" />
+                <ScalarProperty Name="paint_description" ColumnName="paint_description" />
+                <ScalarProperty Name="paint_name" ColumnName="paint_name" />
+                <ScalarProperty Name="companyID" ColumnName="companyID" />
+                <ScalarProperty Name="paintCategoryID" ColumnName="paintCategoryID" />
+                <ScalarProperty Name="paintID" ColumnName="paintID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaintCategories">
+            <EntityTypeMapping TypeName="Model.PaintCategory">
+              <MappingFragment StoreEntitySet="PaintCategory">
+                <ScalarProperty Name="subCategoryDescription" ColumnName="subCategoryDescription" />
+                <ScalarProperty Name="subCategoryName" ColumnName="subCategoryName" />
+                <ScalarProperty Name="mainCategoryDescription" ColumnName="mainCategoryDescription" />
+                <ScalarProperty Name="mainCategoryName" ColumnName="mainCategoryName" />
+                <ScalarProperty Name="paintCategoryID" ColumnName="paintCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tests">
+            <EntityTypeMapping TypeName="Model.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="Model.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="product_color" ColumnName="product_color" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="product_size" ColumnName="product_size" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerRegisters">
+            <EntityTypeMapping TypeName="Model.CustomerRegister">
+              <MappingFragment StoreEntitySet="CustomerRegister">
+                <ScalarProperty Name="customer_password" ColumnName="customer_password" />
+                <ScalarProperty Name="customer_email" ColumnName="customer_email" />
+                <ScalarProperty Name="customer_name" ColumnName="customer_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PaintColors">
+            <EntityTypeMapping TypeName="Model.PaintColor">
+              <MappingFragment StoreEntitySet="PaintColor">
+                <ScalarProperty Name="color_hexValue" ColumnName="color_hexValue" />
+                <ScalarProperty Name="color_name" ColumnName="color_name" />
+                <ScalarProperty Name="paintID" ColumnName="paintID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test1">
+            <EntityTypeMapping TypeName="Model.Test1">
+              <MappingFragment StoreEntitySet="Test1">
+                <ScalarProperty Name="Budget" ColumnName="Budget" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
